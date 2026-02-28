@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Video Chat Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 50px;
+    }
+    video {
+      width: 320px;
+      height: 240px;
+      margin: 10px;
+      background-color: black;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Simple Video Chat</h1>
+
+<video id="localVideo" autoplay muted></video>
+<video id="remoteVideo" autoplay></video>
+<br>
+<button onclick="startCamera()">Start Camera</button>
+
+<script>
+  const localVideo = document.getElementById("localVideo");
+
+  async function startCamera() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      localVideo.srcObject = stream;
+    } catch (err) {
+      alert("Error accessing camera: " + err);
+    }
+  }
+</script>
+
+</body>
+</html>
